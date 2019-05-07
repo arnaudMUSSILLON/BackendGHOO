@@ -15,7 +15,7 @@ router.post('/authenticate', (req, res) => {
             bcrypt.compare(req.body.password, user.get('password'), (err, isMatch) => {
                 if(err) throw err;
                 if(isMatch) {
-                    var token = jwt.sign({email:user.get('email')}, env.dbSecret, {
+                    let token = jwt.sign({email:user.get('email')}, env.dbSecret, {
                         expiresIn : 14400   //expires after 4 hours
                     });
                     res.json({

@@ -12,7 +12,8 @@ router.post('/create', (req, res) => {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        confirm_password: req.body.confirm_password
     }
     User.sync().then(() => {
         bcrypt.genSalt(10, function(err, salt){
