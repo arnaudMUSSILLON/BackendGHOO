@@ -1,30 +1,31 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
-const Image = require('./image');
 
-const User = db.define('user', {
+const Image = db.define('image', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    first_name: {
+    name: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    last_name: {
+    type: { type: Sequelize.STRING },
+    size: { type: Sequelize.STRING },
+    infos: { type: Sequelize.STRING },
+    stranding: { type: Sequelize.BOOLEAN },
+    lat: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    email: {
+    long: {
         type: Sequelize.STRING,
         allowNull: false,
     },
-    password: {
+    date: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
 })
-Image.belongsTo(User, { foreignKey: 'userId' });
-User.hasMany(Image, { foreignKey: 'userId' });
-module.exports = User;
+module.exports = Image;

@@ -18,18 +18,17 @@ router.post('/update', (req, res) => {
                 res.json({ success:false, msg:'Nothing to update' });
 
             User.update(updateObj, { where: { id: user.id } })
-                .then(()=> {
+                .then(() => {
                     let token = jwt.sign({email:user.get('email')}, env.dbSecret, {
-                        expiresIn : 14400   //expires after 4 hours
+                        expiresIn : '4h'
                     });
                     res.json({ success: true, 
                         msg:'Update successfully completed',
                         token: token,
                         user: {
-                            id: user._id,
-                            first_name: user.first_name,
-                            last_name: user.last_name,
-                            email: user.email                            
+                            first_name: req.body.first_name,
+                            last_name: req.body.last_name,
+                            email: req.body.email                            
                         }
                     });
                 })

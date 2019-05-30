@@ -16,7 +16,7 @@ router.post('/authenticate', (req, res) => {
                 if(err) throw err;
                 if(isMatch) {
                     let token = jwt.sign({email:user.get('email')}, env.dbSecret, {
-                        expiresIn : 14400   //expires after 4 hours
+                        expiresIn : "4h"
                     });
                     res.json({
                         success: true,
