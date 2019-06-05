@@ -3,6 +3,7 @@ const updateUser = require('./user/update');
 const authUser = require('./user/authenticate');
 
 const uploadImage = require('./image/upload');
+const getImage = require('./image/get');
 
 module.exports = (app) => {
     app.use(
@@ -14,6 +15,7 @@ module.exports = (app) => {
 
     app.use(
         '/image',
-        uploadImage
+        uploadImage,
+        getImage
     )
 }

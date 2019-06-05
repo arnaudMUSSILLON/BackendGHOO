@@ -22,8 +22,6 @@ router.post('/upload', (req, res) => {
                 Image.create(image)
                     .then(record => {
                         record.setUser(user);
-                        // let base64Data = req.body.photo.replace(/^data:image\/jpg;base64,/, '');
-                        // let base64Data = req.body.photo.split(',')[1]; 
                         let base64Data = decodeBase64Image(req.body.photo);
                         fs.writeFile(path.join(__dirname, '../../uploads/user_images/'+image.name+'.jpg'), base64Data.data, 'base64', err => {
                             if(err) {
